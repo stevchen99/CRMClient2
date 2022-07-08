@@ -50,7 +50,7 @@ class HistoAdapter(private val context: Context,
         val pattern = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
          date.text =  parse(item.DateAffect, pattern).toString()
 
-        
+
 
         return  rowView
     }

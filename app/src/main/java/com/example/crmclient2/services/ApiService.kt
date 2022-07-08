@@ -2,6 +2,7 @@ package com.example.crmclient2.services
 
 import com.example.crmclient2.model.TheClient
 import com.example.crmclient2.model.TheHisto
+import com.example.crmclient2.model.TheHistoBack
 import com.example.crmclient2.model.TheTaches
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -24,7 +25,7 @@ interface ApiService {
 
     @Headers("Content-Type: application/json")
     @POST("HistoCreateUpdJob.php")
-    fun postHisto(@Body userData: TheHisto): Call<TheHisto>
+    fun postHisto(@Body userData: TheHistoBack): Call<TheHistoBack>
 
     companion object {
 

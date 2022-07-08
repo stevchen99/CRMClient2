@@ -8,3 +8,5 @@ data class TheHisto(
     var HeureAffect :Int,
     var DateAffect : String
 )
+
+

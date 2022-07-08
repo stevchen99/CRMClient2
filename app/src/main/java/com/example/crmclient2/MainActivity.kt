@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.widget.ArrayAdapter
 import android.widget.ListView
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.crmclient2.Adapter.HistoAdapter
 import com.example.crmclient2.databinding.ActivityMainBinding
 import com.example.crmclient2.model.TheHisto
@@ -41,9 +42,7 @@ class MainActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        binding.addTaches.setOnClickListener {  findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
         val apiInterfaceHisto = ApiService.create().getHisto()
