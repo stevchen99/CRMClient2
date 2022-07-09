@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.SpinnerAdapter
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.crmclient2.Adapter.HistoAdapter
@@ -46,6 +48,32 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val apiInterfaceHisto = ApiService.create().getHisto()
+        listView = view.findViewById<ListView>(R.id.HistoList)
+
+        apiInterfaceHisto.enqueue(
+            object : Callback<List<TheHisto>> {
+                override fun onResponse(
+                    call: Call<List<TheHisto>>,
+                    response: Response<List<TheHisto>>
+                ) {
+                    if (response.body() != null)
+                    {
+                        Histo = response.body() as ArrayList<TheHisto>
+                        listView.adapter = activity?.let {HistoAdapter(it, Histo)} as HistoAdapter
+
+
+                    }
+                }
+
+                override fun onFailure(call: Call<List<TheHisto>>, t: Throwable) {
+                  /*  Toast.makeText(applicationContext, t?.message ?: "empty", Toast.LENGTH_LONG)
+                        .show()*/
+                }
+            }
+        )
+
     }
 
     override fun onDestroyView() {

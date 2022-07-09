@@ -45,28 +45,9 @@ class MainActivity : AppCompatActivity() {
         binding.addTaches.setOnClickListener {  findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_FirstFragment_to_SecondFragment)
         }
 
-        val apiInterfaceHisto = ApiService.create().getHisto()
-        listView = findViewById<ListView>(R.id.HistoList)
 
-        apiInterfaceHisto.enqueue(
-            object : Callback<List<TheHisto>> {
-                override fun onResponse(
-                    call: Call<List<TheHisto>>,
-                    response: Response<List<TheHisto>>
-                ) {
-                    if (response.body() != null)
-                    {
-                        Histo = response.body() as ArrayList<TheHisto>
-                        listView.adapter = HistoAdapter(this@MainActivity, Histo)
-                    }
-                }
 
-                override fun onFailure(call: Call<List<TheHisto>>, t: Throwable) {
-                    Toast.makeText(applicationContext, t?.message ?: "empty", Toast.LENGTH_LONG)
-                        .show()
-                }
-            }
-        )
+
 
 
 
